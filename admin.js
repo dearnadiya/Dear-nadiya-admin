@@ -1,9 +1,10 @@
 // DEAR NADIYA ADMIN
 
-const title = document.getElementById("title");
-const content = document.getElementById("content");
-
 function changePage(name) {
+
+  const title = document.getElementById("title");
+  const content = document.getElementById("content");
+
   if (!title || !content) return;
 
   if (name === "dash") {
@@ -79,25 +80,30 @@ function changePage(name) {
   }
 }
 
+
 // Tombol Dashboard
 document.getElementById("btn-dashboard").addEventListener("click", function () {
   changePage("dash");
 });
+
 
 // Tombol Produk
 document.getElementById("btn-products").addEventListener("click", function () {
   changePage("products");
 });
 
+
 // Tombol Pesanan
 document.getElementById("btn-orders").addEventListener("click", function () {
   changePage("orders");
 });
 
+
 // Tombol Pembayaran
 document.getElementById("btn-payments").addEventListener("click", function () {
   changePage("payments");
 });
+
 
 // Tombol Rekap
 document.getElementById("btn-recap").addEventListener("click", function () {
