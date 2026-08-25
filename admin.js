@@ -1,60 +1,107 @@
-<div id="content">
-
-  <!-- DASHBOARD -->
-  <div id="page-dash" class="page">
-
-    <div class="stats">
-
-      <div class="card">
-        <small>Total Pesanan</small>
-        <h2 id="total-orders">0</h2>
-      </div>
-
-      <div class="card">
-        <small>Total Pembayaran</small>
-        <h2 id="total-payments">Rp0</h2>
-      </div>
-
-      <div class="card">
-        <small>GO Aktif</small>
-        <h2 id="total-go">0</h2>
-      </div>
-
-    </div>
-
-    <div class="welcome-card">
-      <h2>Selamat datang di Dear Nadiya Admin ♥</h2>
-      <p>Kelola produk, pesanan, pembayaran, dan Group Order dari satu dashboard.</p>
-    </div>
-
-  </div>
+// ============================================
+// DEAR NADIYA ADMIN
+// ============================================
 
 
-  <!-- PRODUK -->
-  <div id="page-products" class="page hidden">
-    <h2>Produk & Group Order</h2>
-    <p>Halaman produk akan ditampilkan di sini.</p>
-  </div>
+// ============================================
+// FUNGSI PINDAH HALAMAN
+// ============================================
+
+function page(name) {
+
+  // Sembunyikan semua halaman
+  const pages = document.querySelectorAll("[id^='page-']");
+
+  pages.forEach(function (p) {
+    p.classList.add("hidden");
+  });
 
 
-  <!-- PESANAN -->
-  <div id="page-orders" class="page hidden">
-    <h2>Pesanan</h2>
-    <p>Data pesanan akan ditampilkan di sini.</p>
-  </div>
+  // Tampilkan halaman yang dipilih
+  const target = document.getElementById("page-" + name);
+
+  if (target) {
+    target.classList.remove("hidden");
+  }
 
 
-  <!-- PEMBAYARAN -->
-  <div id="page-payments" class="page hidden">
-    <h2>Pembayaran</h2>
-    <p>Data pembayaran akan ditampilkan di sini.</p>
-  </div>
+  // Hapus status aktif dari semua tombol menu
+  const buttons = document.querySelectorAll("aside button");
+
+  buttons.forEach(function (button) {
+    button.classList.remove("active");
+  });
 
 
-  <!-- REKAP -->
-  <div id="page-recap" class="page hidden">
-    <h2>Rekap GO</h2>
-    <p>Rekap Group Order akan ditampilkan di sini.</p>
-  </div>
+  // Cari tombol menu yang sesuai
+  const activeButton = document.querySelector(
+    `aside button[onclick="page('${name}')"]`
+  );
 
-</div>
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+
+
+  // Ganti judul halaman
+  const title = document.getElementById("title");
+
+  const titles = {
+    dash: "Dashboard",
+    products: "Produk & GO",
+    orders: "Pesanan",
+    payments: "Pembayaran",
+    recap: "Rekap GO"
+  };
+
+  if (title && titles[name]) {
+    title.textContent = titles[name];
+  }
+
+}
+
+
+// ============================================
+// FUNGSI MENU TAMBAHAN
+// ============================================
+
+function showDashboard() {
+  page("dash");
+}
+
+
+function showProducts() {
+  page("products");
+}
+
+
+function showPayments() {
+  page("payments");
+}
+
+
+function showRecap() {
+  page("recap");
+}
+
+
+// ============================================
+// KELUAR
+// ============================================
+
+function logout() {
+
+  const loginPage = document.getElementById("login");
+  const appPage = document.getElementById("app");
+
+  // Sembunyikan dashboard
+  if (appPage) {
+    appPage.classList.add("hidden");
+  }
+
+  // Tampilkan login kembali
+  if (loginPage) {
+    loginPage.classList.remove("hidden");
+  }
+
+}
