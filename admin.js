@@ -1,25 +1,4 @@
 // ========================================
-// PAKSA MULAI DARI HALAMAN LOGIN
-// ========================================
-
-window.addEventListener("DOMContentLoaded", function () {
-
-  const loginPage =
-    document.getElementById("login");
-
-  const appPage =
-    document.getElementById("app");
-
-  if (loginPage) {
-    loginPage.classList.remove("hidden");
-  }
-
-  if (appPage) {
-    appPage.classList.add("hidden");
-  }
-
-});
-// ========================================
 // CONFIG
 // ========================================
 
@@ -194,24 +173,32 @@ async function login() {
     );
 
     if (
-      Array.isArray(result) &&
-      result.length > 0
-    ) {
+  Array.isArray(result) &&
+  result.length > 0
+) {
 
-alert("17. Dashboard dipanggil");
+  localStorage.setItem(
+    "adminLoggedIn",
+    "true"
+  );
 
-    }
+  document
+    .getElementById("login")
+    .classList
+    .add("hidden");
 
-  } catch (error) {
+  document
+    .getElementById("app")
+    .classList
+    .remove("hidden");
 
-    alert(
-      "ERROR LOGIN: " +
-      error.message
-    );
+  page("dash");
 
-    console.error(error);
+} else {
 
-  }
+  alert(
+    "Username atau password salah"
+  );
 
 }
 
@@ -221,6 +208,10 @@ alert("17. Dashboard dipanggil");
 // ========================================
 
 function logout() {
+
+  localStorage.removeItem(
+  "adminLoggedIn"
+);
 
   document
     .getElementById("app")
