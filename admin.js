@@ -1,11 +1,9 @@
 // DEAR NADIYA ADMIN
 
-const SUPABASE_URL = "https://cwwzsbqfznzwfclajwnw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_ADa_gyMfyBZ1ZcdUO8FRfw_iELzOmbQ";
+const title = document.getElementById("title");
+const content = document.getElementById("content");
 
-  const title = document.getElementById("title");
-  const content = document.getElementById("content");
-
+function changePage(name) {
   if (!title || !content) return;
 
   if (name === "dash") {
@@ -81,42 +79,27 @@ const SUPABASE_KEY = "sb_publishable_ADa_gyMfyBZ1ZcdUO8FRfw_iELzOmbQ";
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// Tombol Dashboard
+document.getElementById("btn-dashboard").addEventListener("click", function () {
+  changePage("dash");
+});
 
-  const btnDashboard = document.getElementById("btn-dashboard");
-  const btnProducts = document.getElementById("btn-products");
-  const btnOrders = document.getElementById("btn-orders");
-  const btnPayments = document.getElementById("btn-payments");
-  const btnRecap = document.getElementById("btn-recap");
+// Tombol Produk
+document.getElementById("btn-products").addEventListener("click", function () {
+  changePage("products");
+});
 
-  if (btnDashboard) {
-    btnDashboard.addEventListener("click", function () {
-      changePage("dash");
-    });
-  }
+// Tombol Pesanan
+document.getElementById("btn-orders").addEventListener("click", function () {
+  changePage("orders");
+});
 
-  if (btnProducts) {
-    btnProducts.addEventListener("click", function () {
-      changePage("products");
-    });
-  }
+// Tombol Pembayaran
+document.getElementById("btn-payments").addEventListener("click", function () {
+  changePage("payments");
+});
 
-  if (btnOrders) {
-    btnOrders.addEventListener("click", function () {
-      changePage("orders");
-    });
-  }
-
-  if (btnPayments) {
-    btnPayments.addEventListener("click", function () {
-      changePage("payments");
-    });
-  }
-
-  if (btnRecap) {
-    btnRecap.addEventListener("click", function () {
-      changePage("recap");
-    });
-  }
-
+// Tombol Rekap
+document.getElementById("btn-recap").addEventListener("click", function () {
+  changePage("recap");
 });
