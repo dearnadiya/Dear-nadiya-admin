@@ -1,122 +1,43 @@
 // ============================================
 // DEAR NADIYA ADMIN
-// admin.js - TANPA HALAMAN LOGIN
+// KHUSUS FUNGSI DASHBOARD
 // ============================================
 
-document.addEventListener("DOMContentLoaded", function () {
 
-  // 1. LANGSUNG TAMPILKAN DASHBOARD
-  const loginPage = document.getElementById("login");
-  const appPage = document.getElementById("app");
+// ============================================
+// FUNGSI PINDAH HALAMAN
+// ============================================
 
-  if (loginPage) {
-    loginPage.classList.add("hidden");
-    loginPage.style.display = "none";
+function page(name) {
+
+  // Sembunyikan semua halaman
+  const pages = document.querySelectorAll("[id^='page-']");
+
+  pages.forEach(function (p) {
+    p.classList.add("hidden");
+  });
+
+
+  // Tampilkan halaman yang dipilih
+  const target = document.getElementById("page-" + name);
+
+  if (target) {
+    target.classList.remove("hidden");
   }
 
-  if (appPage) {
-    appPage.classList.remove("hidden");
-    appPage.style.display = "";
-  }
 
-
-  // 2. FUNGSI PINDAH HALAMAN
-  window.page = function (name) {
-
-    // Sembunyikan semua halaman
-    const pages = document.querySelectorAll("[id^='page-']");
-
-    pages.forEach(function (p) {
-      p.classList.add("hidden");
-      p.style.display = "none";
-    });
-
-    // Tampilkan halaman yang dipilih
-    const target = document.getElementById("page-" + name);
-
-    if (target) {
-      target.classList.remove("hidden");
-      target.style.display = "";
-    }
-
-
-    // Ubah judul halaman
-    const title = document.getElementById("pageTitle");
-    const subtitle = document.getElementById("pageSubtitle");
-
-    const titles = {
-      dash: "Dashboard",
-      products: "Produk & GO",
-      payments: "Pembayaran",
-      recap: "Rekap GO"
-    };
-
-    if (title && titles[name]) {
-      title.textContent = titles[name];
-    }
-
-    if (subtitle && titles[name]) {
-      subtitle.textContent = "Dear Nadiya Admin";
-    }
-
-
-    // Memberikan status aktif pada menu
-    const menuButtons = document.querySelectorAll("[data-page]");
-
-    menuButtons.forEach(function (button) {
-      button.classList.remove("active");
-
-      if (button.dataset.page === name) {
-        button.classList.add("active");
-      }
-    });
-
-
-    // Kembali ke bagian atas halaman
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  };
-
-
-  // 3. HUBUNGKAN TOMBOL MENU
+  // Status menu aktif
   const menuButtons = document.querySelectorAll("[data-page]");
 
   menuButtons.forEach(function (button) {
 
-    button.addEventListener("click", function () {
+    button.classList.remove("active");
 
-      const pageName = button.dataset.page;
-
-      if (pageName) {
-        window.page(pageName);
-      }
-
-    });
+    if (button.dataset.page === name) {
+      button.classList.add("active");
+    }
 
   });
-
-
-  // 4. HALAMAN PERTAMA ADALAH DASHBOARD
-  window.page("dash");
-
-});
-
-
-// ============================================
-// TOMBOL KELUAR
-// ============================================
-
-function logout() {
-
-  const confirmLogout = confirm(
-    "Keluar dari Admin Dashboard?"
-  );
-
-  if (confirmLogout) {
-    window.location.href = "index.html";
-  }
 
 }
 
@@ -126,20 +47,42 @@ function logout() {
 // ============================================
 
 function showDashboard() {
-  window.page("dash");
+  page("dash");
 }
 
 
 function showProducts() {
-  window.page("products");
+  page("products");
 }
 
 
 function showPayments() {
-  window.page("payments");
+  page("payments");
 }
 
 
 function showRecap() {
-  window.page("recap");
+  page("recap");
+}
+
+
+// ============================================
+// KELUAR
+// ============================================
+
+function logout() {
+
+  const loginPage = document.getElementById("login");
+  const appPage = document.getElementById("app");
+
+  // Sembunyikan dashboard
+  if (appPage) {
+    appPage.classList.add("hidden");
+  }
+
+  // Tampilkan login kembali
+  if (loginPage) {
+    loginPage.classList.remove("hidden");
+  }
+
 }
