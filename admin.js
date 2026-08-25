@@ -1,3 +1,5 @@
+localStorage.removeItem("adminLoggedIn");
+
 // ========================================
 // SUPABASE CONFIG
 // ========================================
