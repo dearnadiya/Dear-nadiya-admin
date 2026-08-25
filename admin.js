@@ -1,6 +1,6 @@
 // DEAR NADIYA ADMIN
 
-const SUPABASE_URL = "https://cwwzsbqfznzwfclajwnw.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://cwwzsbqfznzwfclajwnw.supabase.co";
 const SUPABASE_KEY = "sb_publishable_ADa_gyMfyBZ1ZcdUO8FRfw_iELzOmbQ";
 
   const title = document.getElementById("title");
