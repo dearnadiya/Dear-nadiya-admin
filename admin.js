@@ -182,15 +182,16 @@ async function login() {
     "true"
   );
 
-  document
-    .getElementById("login")
-    .classList
-    .add("hidden");
+  const loginPage =
+    document.getElementById("login");
 
-  document
-    .getElementById("app")
-    .classList
-    .remove("hidden");
+  const appPage =
+    document.getElementById("app");
+
+  loginPage.classList.add("hidden");
+  appPage.classList.remove("hidden");
+
+  alert("Login berhasil");
 
   page("dash");
 
@@ -200,9 +201,8 @@ async function login() {
     "Username atau password salah"
   );
 
-}
-
-
+    }
+    
 // ========================================
 // LOGOUT
 // ========================================
