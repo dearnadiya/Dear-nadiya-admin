@@ -81,32 +81,42 @@ const SUPABASE_KEY = "sb_publishable_ADa_gyMfyBZ1ZcdUO8FRfw_iELzOmbQ";
   }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
 
-// Tombol Dashboard
-document.getElementById("btn-dashboard").addEventListener("click", function () {
-  changePage("dash");
-});
+  const btnDashboard = document.getElementById("btn-dashboard");
+  const btnProducts = document.getElementById("btn-products");
+  const btnOrders = document.getElementById("btn-orders");
+  const btnPayments = document.getElementById("btn-payments");
+  const btnRecap = document.getElementById("btn-recap");
 
+  if (btnDashboard) {
+    btnDashboard.addEventListener("click", function () {
+      changePage("dash");
+    });
+  }
 
-// Tombol Produk
-document.getElementById("btn-products").addEventListener("click", function () {
-  changePage("products");
-});
+  if (btnProducts) {
+    btnProducts.addEventListener("click", function () {
+      changePage("products");
+    });
+  }
 
+  if (btnOrders) {
+    btnOrders.addEventListener("click", function () {
+      changePage("orders");
+    });
+  }
 
-// Tombol Pesanan
-document.getElementById("btn-orders").addEventListener("click", function () {
-  changePage("orders");
-});
+  if (btnPayments) {
+    btnPayments.addEventListener("click", function () {
+      changePage("payments");
+    });
+  }
 
+  if (btnRecap) {
+    btnRecap.addEventListener("click", function () {
+      changePage("recap");
+    });
+  }
 
-// Tombol Pembayaran
-document.getElementById("btn-payments").addEventListener("click", function () {
-  changePage("payments");
-});
-
-
-// Tombol Rekap
-document.getElementById("btn-recap").addEventListener("click", function () {
-  changePage("recap");
 });
