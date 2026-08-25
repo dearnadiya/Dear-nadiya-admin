@@ -1,115 +1,49 @@
-const SUPABASE_URL =
-  "https://cwwzsbqfznzwfclajwnw.supabase.co";
+document.addEventListener("DOMContentLoaded", function () {
 
-const SUPABASE_KEY =
-  "sb_publishable_ADa_gyMfyBZ1ZcdUO8FRfw_iELzOmbQ";
+  const loginPage = document.getElementById("login");
+  const appPage = document.getElementById("app");
+  const loginButton = document.getElementById("loginButton");
 
-
-async function simpleLogin() {
-
-  alert("Tombol berhasil diklik");
-
-  const username =
-    document.getElementById("u").value.trim();
-
-  const password =
-    document.getElementById("p").value;
-
-  if (!username || !password) {
-
-    alert(
-      "Username dan password harus diisi"
-    );
-
-    return;
-
+  // Saat pertama membuka website:
+  // tampilkan login, sembunyikan dashboard
+  if (loginPage) {
+    loginPage.classList.remove("hidden");
   }
 
+  if (appPage) {
+    appPage.classList.add("hidden");
+  }
 
-  try {
+  // Saat tombol Masuk Admin diklik
+  if (loginButton) {
 
-    const url =
-      `${SUPABASE_URL}/rest/v1/admin_users` +
-      `?username=eq.${encodeURIComponent(username)}` +
-      `&password=eq.${encodeURIComponent(password)}` +
-      `&select=*`;
+    loginButton.addEventListener("click", function () {
 
+      const username = document.getElementById("u").value;
+      const password = document.getElementById("p").value;
 
-    const response =
-      await fetch(url, {
+      // Username dan password
+      if (username === "admin" && password === "180322") {
 
-        headers: {
+        // Sembunyikan login
+        loginPage.classList.add("hidden");
 
-          apikey:
-            SUPABASE_KEY,
+        // Tampilkan dashboard
+        appPage.classList.remove("hidden");
 
-          Authorization:
-            `Bearer ${SUPABASE_KEY}`
-
+        // Tampilkan halaman dashboard
+        if (typeof page === "function") {
+          page("dash");
         }
 
-      });
+      } else {
 
-
-    const result =
-      await response.json();
-
-
-    console.log(
-      "Hasil login:",
-      result
-    );
-
-
-    if (
-      Array.isArray(result) &&
-      result.length > 0
-    ) {
-
-      document
-        .getElementById("login")
-        .classList
-        .add("hidden");
-
-
-      document
-        .getElementById("app")
-        .classList
-        .remove("hidden");
-
-
-      alert(
-        "Login berhasil"
-      );
-
-
-      if (
-        typeof page === "function"
-      ) {
-
-        page("dash");
+        alert("Username atau password salah!");
 
       }
 
-
-    } else {
-
-      alert(
-        "Username atau password salah"
-      );
-
-    }
-
-
-  } catch (error) {
-
-    console.error(error);
-
-    alert(
-      "Gagal login: " +
-      error.message
-    );
+    });
 
   }
 
-}
+});
