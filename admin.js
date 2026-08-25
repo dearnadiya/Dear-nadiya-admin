@@ -1,31 +1,58 @@
 // ========================================
-// PAKSA MULAI DARI HALAMAN LOGIN
+// MULAI DARI HALAMAN LOGIN
 // ========================================
 
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener(
+  "DOMContentLoaded",
+  function () {
 
-  const loginPage =
-    document.getElementById("login");
+    const loginPage =
+      document.getElementById("login");
 
-  const appPage =
-    document.getElementById("app");
+    const appPage =
+      document.getElementById("app");
 
-  if (loginPage) {
-    loginPage.classList.remove("hidden");
+    const loginButton =
+      document.getElementById(
+        "loginButton"
+      );
+
+    // Tampilkan halaman login
+    if (loginPage) {
+      loginPage.classList.remove(
+        "hidden"
+      );
+    }
+
+    // Sembunyikan dashboard
+    if (appPage) {
+      appPage.classList.add(
+        "hidden"
+      );
+    }
+
+    // Hubungkan tombol login
+    if (loginButton) {
+
+      loginButton.addEventListener(
+        "click",
+        function () {
+
+          login();
+
+        }
+      );
+
+    } else {
+
+      console.error(
+        "Tombol loginButton tidak ditemukan"
+      );
+
+    }
+
   }
-
-  if (appPage) {
-    appPage.classList.add("hidden");
-  }
-
-  const loginButton =
-    document.getElementById("loginButton");
-
-  if (loginButton) {
-    loginButton.onclick = login;
-  }
-
-});
+);
 
 // ========================================
 // SUPABASE CONFIG
@@ -143,76 +170,59 @@ async function dbRequest(
 
 async function login() {
 
+  alert("Tombol Masuk Admin berfungsi");
+
   try {
 
-    const username =
-      document
-        .getElementById("u")
-        .value
-        .trim();
+    const usernameInput =
+      document.getElementById("u");
 
-    const password =
-      document
-        .getElementById("p")
-        .value;
+    const passwordInput =
+      document.getElementById("p");
 
-    if (!username || !password) {
+    if (!usernameInput) {
 
       alert(
-        "Username dan password wajib diisi"
+        "Input username tidak ditemukan"
       );
 
       return;
 
     }
 
+    if (!passwordInput) {
 
-    const result =
-      await dbRequest(
-        "admin_users",
-        "GET",
-        `?username=eq.${encodeURIComponent(username)}&password=eq.${encodeURIComponent(password)}&select=*`
+      alert(
+        "Input password tidak ditemukan"
       );
 
+      return;
 
- if (
-  Array.isArray(result) &&
-  result.length > 0
-) {
+    }
 
-  document
-    .getElementById("login")
-    .classList
-    .add("hidden");
+    const username =
+      usernameInput.value.trim();
 
-  document
-    .getElementById("app")
-    .classList
-    .remove("hidden");
+    const password =
+      passwordInput.value;
 
-  await page("dash");
+    alert(
+      "Username: " + username
+    );
 
-} else {
-
-  alert(
-    "Username atau password salah"
-  );
-
-}
+    // Lanjutkan kode Supabase di bawah sini
 
   } catch (error) {
 
-    console.error(error);
-
     alert(
-      "Login gagal: " +
-      error.message
+      "ERROR: " + error.message
     );
+
+    console.error(error);
 
   }
 
 }
-
 
 // ========================================
 // LOGOUT
