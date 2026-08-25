@@ -334,28 +334,4 @@ window.addEventListener(
         login;
 
     }
-
-
-    const isLoggedIn =
-      localStorage.getItem(
-        "adminLoggedIn"
-      );
-
-    if (isLoggedIn === "true") {
-
-      document
-        .getElementById("login")
-        .classList
-        .add("hidden");
-
-      document
-        .getElementById("app")
-        .classList
-        .remove("hidden");
-
-      page("dash");
-
-    }
-
-  }
 );
