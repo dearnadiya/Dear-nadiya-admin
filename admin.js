@@ -1,88 +1,60 @@
-// ============================================
-// DEAR NADIYA ADMIN
-// KHUSUS FUNGSI DASHBOARD
-// ============================================
+<div id="content">
+
+  <!-- DASHBOARD -->
+  <div id="page-dash" class="page">
+
+    <div class="stats">
+
+      <div class="card">
+        <small>Total Pesanan</small>
+        <h2 id="total-orders">0</h2>
+      </div>
+
+      <div class="card">
+        <small>Total Pembayaran</small>
+        <h2 id="total-payments">Rp0</h2>
+      </div>
+
+      <div class="card">
+        <small>GO Aktif</small>
+        <h2 id="total-go">0</h2>
+      </div>
+
+    </div>
+
+    <div class="welcome-card">
+      <h2>Selamat datang di Dear Nadiya Admin ♥</h2>
+      <p>Kelola produk, pesanan, pembayaran, dan Group Order dari satu dashboard.</p>
+    </div>
+
+  </div>
 
 
-// ============================================
-// FUNGSI PINDAH HALAMAN
-// ============================================
-
-function page(name) {
-
-  // Sembunyikan semua halaman
-  const pages = document.querySelectorAll("[id^='page-']");
-
-  pages.forEach(function (p) {
-    p.classList.add("hidden");
-  });
+  <!-- PRODUK -->
+  <div id="page-products" class="page hidden">
+    <h2>Produk & Group Order</h2>
+    <p>Halaman produk akan ditampilkan di sini.</p>
+  </div>
 
 
-  // Tampilkan halaman yang dipilih
-  const target = document.getElementById("page-" + name);
-
-  if (target) {
-    target.classList.remove("hidden");
-  }
-
-
-  // Status menu aktif
-  const menuButtons = document.querySelectorAll("[data-page]");
-
-  menuButtons.forEach(function (button) {
-
-    button.classList.remove("active");
-
-    if (button.dataset.page === name) {
-      button.classList.add("active");
-    }
-
-  });
-
-}
+  <!-- PESANAN -->
+  <div id="page-orders" class="page hidden">
+    <h2>Pesanan</h2>
+    <p>Data pesanan akan ditampilkan di sini.</p>
+  </div>
 
 
-// ============================================
-// FUNGSI MENU TAMBAHAN
-// ============================================
-
-function showDashboard() {
-  page("dash");
-}
+  <!-- PEMBAYARAN -->
+  <div id="page-payments" class="page hidden">
+    <h2>Pembayaran</h2>
+    <p>Data pembayaran akan ditampilkan di sini.</p>
+  </div>
 
 
-function showProducts() {
-  page("products");
-}
+  <!-- REKAP -->
+  <div id="page-recap" class="page hidden">
+    <h2>Rekap GO</h2>
+    <p>Rekap Group Order akan ditampilkan di sini.</p>
+  </div>
 
-
-function showPayments() {
-  page("payments");
-}
-
-
-function showRecap() {
-  page("recap");
-}
-
-
-// ============================================
-// KELUAR
-// ============================================
-
-function logout() {
-
-  const loginPage = document.getElementById("login");
-  const appPage = document.getElementById("app");
-
-  // Sembunyikan dashboard
-  if (appPage) {
-    appPage.classList.add("hidden");
-  }
-
-  // Tampilkan login kembali
-  if (loginPage) {
-    loginPage.classList.remove("hidden");
-  }
-
-}
+</div>
