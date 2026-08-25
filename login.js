@@ -1,49 +1,29 @@
-document.addEventListener("DOMContentLoaded", function () {
+function login() {
+
+  const username = document.getElementById("u").value;
+  const password = document.getElementById("p").value;
 
   const loginPage = document.getElementById("login");
   const appPage = document.getElementById("app");
-  const loginButton = document.getElementById("loginButton");
 
-  // Saat pertama membuka website:
-  // tampilkan login, sembunyikan dashboard
-  if (loginPage) {
-    loginPage.classList.remove("hidden");
-  }
+  // Cek username dan password
+  if (username === "admin" && password === "180322") {
 
-  if (appPage) {
-    appPage.classList.add("hidden");
-  }
+    // Sembunyikan halaman login
+    loginPage.classList.add("hidden");
+    loginPage.style.display = "none";
 
-  // Saat tombol Masuk Admin diklik
-  if (loginButton) {
+    // Tampilkan dashboard
+    appPage.classList.remove("hidden");
+    appPage.style.display = "block";
 
-    loginButton.addEventListener("click", function () {
+    // Tampilkan halaman dashboard
+    page("dash");
 
-      const username = document.getElementById("u").value;
-      const password = document.getElementById("p").value;
+  } else {
 
-      // Username dan password
-      if (username === "admin" && password === "180322") {
-
-        // Sembunyikan login
-        loginPage.classList.add("hidden");
-
-        // Tampilkan dashboard
-        appPage.classList.remove("hidden");
-
-        // Tampilkan halaman dashboard
-        if (typeof page === "function") {
-          page("dash");
-        }
-
-      } else {
-
-        alert("Username atau password salah!");
-
-      }
-
-    });
+    alert("Username atau Password salah!");
 
   }
 
-});
+}
