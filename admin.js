@@ -1,4 +1,31 @@
-localStorage.removeItem("adminLoggedIn");
+// ========================================
+// PAKSA MULAI DARI HALAMAN LOGIN
+// ========================================
+
+window.addEventListener("DOMContentLoaded", function () {
+
+  const loginPage =
+    document.getElementById("login");
+
+  const appPage =
+    document.getElementById("app");
+
+  if (loginPage) {
+    loginPage.classList.remove("hidden");
+  }
+
+  if (appPage) {
+    appPage.classList.add("hidden");
+  }
+
+  const loginButton =
+    document.getElementById("loginButton");
+
+  if (loginButton) {
+    loginButton.onclick = login;
+  }
+
+});
 
 // ========================================
 // SUPABASE CONFIG
@@ -148,36 +175,30 @@ async function login() {
       );
 
 
-    if (
-      Array.isArray(result) &&
-      result.length > 0
-    ) {
+ if (
+  Array.isArray(result) &&
+  result.length > 0
+) {
 
-      localStorage.setItem(
-        "adminLoggedIn",
-        "true"
-      );
+  document
+    .getElementById("login")
+    .classList
+    .add("hidden");
 
-      document
-        .getElementById("login")
-        .classList
-        .add("hidden");
+  document
+    .getElementById("app")
+    .classList
+    .remove("hidden");
 
-      document
-        .getElementById("app")
-        .classList
-        .remove("hidden");
+  await page("dash");
 
+} else {
 
-      page("dash");
+  alert(
+    "Username atau password salah"
+  );
 
-    } else {
-
-      alert(
-        "Username atau password salah"
-      );
-
-    }
+}
 
   } catch (error) {
 
