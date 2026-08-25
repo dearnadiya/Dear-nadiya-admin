@@ -2,57 +2,27 @@
 // MULAI DARI HALAMAN LOGIN
 // ========================================
 
-window.addEventListener(
-  "DOMContentLoaded",
-  function () {
+window.addEventListener("DOMContentLoaded", function () {
 
-    const loginPage =
-      document.getElementById("login");
+  const loginPage =
+    document.getElementById("login");
 
-    const appPage =
-      document.getElementById("app");
+  const appPage =
+    document.getElementById("app");
 
-    const loginButton =
-      document.getElementById(
-        "loginButton"
-      );
+  const loginButton =
+    document.getElementById("loginButton");
 
-    // Tampilkan halaman login
-    if (loginPage) {
-      loginPage.classList.remove(
-        "hidden"
-      );
-    }
+  // Tampilkan login
+  loginPage.classList.remove("hidden");
 
-    // Sembunyikan dashboard
-    if (appPage) {
-      appPage.classList.add(
-        "hidden"
-      );
-    }
+  // Sembunyikan dashboard
+  appPage.classList.add("hidden");
 
-    // Hubungkan tombol login
-    if (loginButton) {
+  // Tombol login
+  loginButton.onclick = login;
 
-      loginButton.addEventListener(
-        "click",
-        function () {
-
-          login();
-
-        }
-      );
-
-    } else {
-
-      console.error(
-        "Tombol loginButton tidak ditemukan"
-      );
-
-    }
-
-  }
-);
+});
 
 // ========================================
 // SUPABASE CONFIG
