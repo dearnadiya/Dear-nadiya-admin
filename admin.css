@@ -171,6 +171,11 @@ aside a:hover {
   background: #f8edf5;
 }
 
+aside button.active {
+  background: #f8edf5;
+  color: var(--p);
+}
+
 .logout {
   margin-top: 20px !important;
   color: #c34574 !important;
