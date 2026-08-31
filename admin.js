@@ -2743,3 +2743,66 @@ document.addEventListener(
 
   }
 );
+
+  // ============================================
+// NAVIGASI ADMIN - FINAL
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const buttons = {
+    "btn-dashboard": "dash",
+    "btn-products": "products",
+    "btn-orders": "orders",
+    "btn-payments": "payments",
+    "btn-recap": "recap"
+  };
+
+
+  Object.keys(buttons).forEach(function (id) {
+
+    const button = document.getElementById(id);
+
+    if (!button) {
+      console.warn("Tombol tidak ditemukan:", id);
+      return;
+    }
+
+
+    button.addEventListener("click", function (event) {
+
+      event.preventDefault();
+
+      const pageName = buttons[id];
+
+      console.log(
+        "Admin navigation:",
+        pageName
+      );
+
+
+      if (typeof changePage === "function") {
+
+        changePage(pageName);
+
+      } else {
+
+        console.error(
+          "Fungsi changePage tidak ditemukan."
+        );
+
+      }
+
+    });
+
+  });
+
+
+  // Pastikan Dashboard aktif saat pertama masuk
+  if (typeof changePage === "function") {
+
+    changePage("dash");
+
+  }
+
+});
